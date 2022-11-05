@@ -92,6 +92,15 @@ class DataEntryForm(ttk.Frame):
         )
         read_btn.pack(side=RIGHT, padx=5)
 
+        new_window = ttk.Button(
+            master=container,
+            text="new_window",
+            command=self.New_Window,
+            bootstyle=INFO,
+            width=6,
+        )
+        new_window.pack(side=RIGHT, padx=5)
+
     def output_data_fn(self):
         output_data = {
             'name':self.name.get(),
@@ -147,9 +156,39 @@ class DataEntryForm(ttk.Frame):
         """Cancel and close the application."""
         self.quit()
 
+    def New_Window(self):
+        Window = ttk.Toplevel()
+        canvas = ttk.Canvas(Window)
+        canvas.pack()
+        self.create_form_entry("name", self.name)
 
 if __name__ == "__main__":
 
     app = ttk.Window("Data Entry", "superhero", resizable=(False, False))
     DataEntryForm(app)
     app.mainloop()
+
+
+"""
+import tkinter as tk
+
+def New_Window():
+    Window = tk.Toplevel()
+    canvas = tk.Canvas(Window, height=HEIGHT, width=WIDTH)
+    canvas.pack()
+    
+HEIGHT = 300
+WIDTH = 500
+
+ws = tk.Tk()
+ws.title("Python Guides")
+canvas = tk.Canvas(ws, height=HEIGHT, width=WIDTH)
+canvas.pack()
+
+button = tk.Button(ws, text="Click ME", bg='White', fg='Black',
+                              command=lambda: New_Window())
+
+button.pack()
+ws.mainloop()
+
+"""
