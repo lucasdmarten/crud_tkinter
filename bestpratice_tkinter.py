@@ -28,8 +28,8 @@ class MainApplication(tk.Frame):
         ttk.Button(master=container,text="client_add",# command=self.create,
                     bootstyle=constants.SUCCESS,width=6,).grid(row=9, column=1, sticky="w")
 
-    def service_register(self, register):
-        container = ttk.Frame(register)
+    def service_register(self, register_tab):
+        container = ttk.Frame(register_tab)
         container.grid(row=1, column=0, sticky="w")
         ttk.Label(master=container, text="SERVICE").grid(row=5, column=0, sticky="nw")
         self.create_form_entry("client_name", tk.StringVar, container, 6, 0)
@@ -38,6 +38,14 @@ class MainApplication(tk.Frame):
         self.create_form_entry("descrição", tk.StringVar, container, 9, 0)
         ttk.Button(master=container, text="service_add",# command=self.create,
                     bootstyle=constants.SUCCESS, width=6).grid(row=18, column=1, sticky="w")
+
+    def consult_client(self, consult_tab):
+        container = ttk.Frame(consult_tab)
+        container.grid(row=0, column=0, sticky="w")
+        ttk.Label(master=container, text="SEARCH BY NAME").grid(row=0, column=0, sticky="nw")
+        self.create_form_entry("name", tk.StringVar, container, 1, 0)
+        ttk.Button(master=container,text="search_now",# command=self.create,
+                    bootstyle=constants.SUCCESS,width=6,).grid(row=9, column=1, sticky="w")
 
 
 class TabController(ttk.Notebook):
@@ -60,4 +68,5 @@ if __name__ == '__main__':
    tab_app = TabController(window)
    MainApplication(window).client_register(tab_app.register_tab)
    MainApplication(window).service_register(tab_app.register_tab)
+   MainApplication(window).consult_client(tab_app.consult_tab)
    window.mainloop()
